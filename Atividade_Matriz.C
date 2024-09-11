@@ -9,7 +9,7 @@ void imprimir(int mat[][QTD_COLUNAS], int lin, int col);
 int QtdImpares(int mat[][QTD_COLUNAS],int lin,int col);
 int AcharElemento(int mat[][QTD_COLUNAS],int lin,int col, int valor);
 int SomaMatriz(int mat[][QTD_COLUNAS],int lin,int col);
-int MediaMatriz(int mat[][QTD_COLUNAS],int lin,int col);
+double MediaMatriz(int mat[][QTD_COLUNAS],int lin,int col);
 void MediaLinha(int mat[][QTD_COLUNAS],int lin,int col);
 
 int main(){
@@ -58,8 +58,8 @@ int main(){
             printf("A soma de todos os elementosda matriz é: %d\n\n",R);
         }
         else if (opcao == 4){
-            int R = MediaMatriz(matriz,qtdlinhas,qtdcolunas);
-            printf("A média dos elementos da matriz é: %d\n\n",R);
+            double R = MediaMatriz(matriz,qtdlinhas,qtdcolunas);
+            printf("A média dos elementos da matriz é: %f\n\n",R);
         }
         else if (opcao == 5){
             MediaLinha(matriz,qtdlinhas,qtdcolunas);
@@ -135,8 +135,9 @@ int SomaMatriz(int mat[][QTD_COLUNAS],int lin,int col){
     return soma;
 }
 
-int MediaMatriz(int mat[][QTD_COLUNAS],int lin,int col){
-    int media,soma=0;
+double MediaMatriz(int mat[][QTD_COLUNAS],int lin,int col){
+    double soma=0;
+    double media;
     for (int i=0;i<lin;++i){
         for (int j=0;j<col;++j){
             soma += mat[i][j];
@@ -147,14 +148,15 @@ int MediaMatriz(int mat[][QTD_COLUNAS],int lin,int col){
 }
 
 void MediaLinha(int mat[][QTD_COLUNAS],int lin,int col){
-    int mediaLinha,soma;
+    double soma;
+    double mediaLinha;
     for(int i=0;i<lin;++i){
         mediaLinha=0,soma=0;
         for(int j=0;j<col;++j){
             soma += mat[i][j];
         }
         mediaLinha = soma/col;
-        printf("A média da %d° linha é: %d\n",i+1,mediaLinha);
+        printf("A média da %d° linha é: %f\n",i+1,mediaLinha);
     }
     printf("\n");
 }
