@@ -7,7 +7,7 @@ int lerDentroIntervalo(int min, int max);
 void lerMatriz(int mat[][QTD_COLUNAS],int lin,int col);
 void imprimir(int mat[][QTD_COLUNAS], int lin, int col);
 int QtdImpares(int mat[][QTD_COLUNAS],int lin,int col);
-int AcharElemento(int mat[][QTD_COLUNAS],int lin,int col, int valor);
+int AcharElemento(int mat[][QTD_COLUNAS],int lin,int col, int valor, int *linha, int *coluna);
 int SomaMatriz(int mat[][QTD_COLUNAS],int lin,int col);
 double MediaMatriz(int mat[][QTD_COLUNAS],int lin,int col);
 void MediaLinha(int mat[][QTD_COLUNAS],int lin,int col);
@@ -47,9 +47,10 @@ int main(){
             int valor;
             printf("Insira o elemento para procurar: ");
             scanf("%d",&valor);
-            int R = AcharElemento(matriz,qtdlinhas,qtdcolunas,valor);
+            int linha,coluna;
+            int R = AcharElemento(matriz,qtdlinhas,qtdcolunas,valor,&linha,&coluna);
             if (R == 0){
-                printf("Valor encontrado\n\n");
+                printf("Valor encontrado na posição: [%d] [%d]\n\n",linha,coluna);
             } else{
                 printf("Valor não encontrado\n\n");
             }
@@ -114,10 +115,12 @@ int QtdImpares(int mat[][QTD_COLUNAS],int lin,int col){
     return r;
 }
 
-int AcharElemento(int mat[][QTD_COLUNAS],int lin,int col, int valor){
+int AcharElemento(int mat[][QTD_COLUNAS],int lin,int col, int valor, int *linha, int *coluna){
     for (int i=0;i<lin;++i){
         for (int j=0;j<col;++j){
             if (mat[i][j] == valor){
+                *linha = i;
+                *coluna = j;
                 return 0;
             }
         }
